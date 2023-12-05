@@ -5,6 +5,7 @@ namespace App\Http\Resources\V1;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Number;
 
 class InvoiceResource extends JsonResource
 {
@@ -20,16 +21,16 @@ class InvoiceResource extends JsonResource
         $paid = $this->paid;
         return [
             'user' => [
-                'firstName' => $this->user->firstName,
-                'lastName' => $this->user->lastName,
-                'fullName' => $this->user->firstName . ' ' . $this->user->lastName,
+                'firstName' => $this->user->first_name,
+                'lastName' => $this->user->last_name,
+                'fullName' => $this->user->first_name . ' ' . $this->user->last_name,
                 'email' => $this->user->email,
             ],
             'type' => $this->types[$this->type],
-            'value' => 'R$ ' . number_format($this->value, 2, ',', '.'),
+            'value' => Number::currency($this->value, "BRL"),
             'paid' => $paid ? 'Pago' : 'Não Pago',
-            'paymentDate' => $paid ? Carbon::parse($this->payment_date)->format('d/m/Y H:i:s') : Null,
-            'paymentSince' => $paid ? Carbon::parse($this->payment_date)->diffForHumans() : Null
+            'paymentDate' => $paid ? Carbon::parse($this->payment_date)->format('d/m/Y H:i:s') : NULL,
+            'paymentSince' => $paid ? Carbon::parse($this->payment_date)->diffForHumans() : NULL,
         ];
     }
 }
