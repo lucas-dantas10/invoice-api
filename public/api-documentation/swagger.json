@@ -1,0 +1,131 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "My First API",
+        "version": "0.1"
+    },
+    "paths": {
+        "/api/v1/invoices": {
+            "get": {
+                "tags": [
+                    "invoices"
+                ],
+                "summary": "Returns a list of invoices",
+                "description": "Returns a object of invoice",
+                "operationId": "bc7d90facaef99e1846d581b3a3b6efa",
+                "responses": {
+                    "200": {
+                        "description": "A list with invoices"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "invoices"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
+                "summary": "Store invoice ",
+                "description": "Create invoice",
+                "operationId": "2a3d332a2b06bcf3aa6a68444f786beb",
+                "parameters": [
+                    {
+                        "name": "user_id",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "name": "type",
+                        "in": "formData",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "name": "paid",
+                        "in": "formData",
+                        "type": "boolean",
+                        "required": true
+                    },
+                    {
+                        "name": "value",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "name": "payment_date",
+                        "in": "formData",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Create invoice"
+                    }
+                }
+            }
+        },
+        "/api/v1/invoices/{invoice_id}": {
+            "get": {
+                "tags": [
+                    "invoices"
+                ],
+                "summary": "Returns a invoice especific",
+                "description": "Returns a object of invoice",
+                "operationId": "3a528f59d0070e9d0a3b019a0984c0e7",
+                "parameters": [
+                    {
+                        "name": "invoice_id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A invoice especific"
+                    }
+                }
+            }
+        },
+        "/api/v1/users": {
+            "get": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "Returns a list of users",
+                "description": "Returns a object of users",
+                "operationId": "12e989554c281d650dff75443acabf54",
+                "responses": {
+                    "200": {
+                        "description": "A list with users"
+                    }
+                }
+            }
+        },
+        "/api/v1/users/{user_id}": {
+            "get": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "Returns a user especific",
+                "description": "Returns a object of users",
+                "operationId": "5b0cb4a38a08204b7fab1d899510161c",
+                "parameters": [
+                    {
+                        "name": "user_id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A user especific"
+                    }
+                }
+            }
+        }
+    }
+}
