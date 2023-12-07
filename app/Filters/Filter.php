@@ -1,4 +1,4 @@
-<?php
+<?php 
 
 namespace App\Filters;
 
@@ -6,11 +6,11 @@ use DeepCopy\Exception\PropertyException;
 use Exception;
 use Illuminate\Http\Request;
 
-abstract class Filter
+abstract class Filter 
 {
     protected array $allowedOperatorsFields = [];
 
-    protected array $transalateOperatorsFields = [
+    protected array $translateOperatorsFields = [
         'gt' => '>',
         'gte' => '>=',
         'lt' => '<',
@@ -18,7 +18,7 @@ abstract class Filter
         'eq' => '=',
         'ne' => '!=',
         'in' => 'in',
-    ];
+    ]; 
 
     public function filter(Request $request)
     {
@@ -26,7 +26,7 @@ abstract class Filter
         $whereIn = [];
 
         if (empty($this->allowedOperatorsFields)) {
-            throw new PropertyException("Property allowedOperatorsfields is empty");
+            throw new PropertyException("Property allowedOperatorsFields is empty in {$this}");
         }
 
         foreach ($this->allowedOperatorsFields as $param => $operators) {
@@ -34,19 +34,19 @@ abstract class Filter
             if ($queryOperator) {
                 foreach ($queryOperator as $operator => $value) {
                     if (!in_array($operator, $operators)) {
-                        throw new Exception("{$param} does not have {$operator} operator");
+                        throw new Exception(("Parametro '{$param}' does not have '{$operator}' operator"));
                     }
 
-                    if (str_contains($value, '[')) {
+                    if (str_contains($value, "[")) {
                         $whereIn[] = [
                             $param,
-                            explode(',', str_replace(['[', ']'], ['', ''], $value)),
+                            explode(',', \str_replace(["[", "]"], ["", ""], $value)),
                             $value
                         ];
                     } else {
                         $where[] = [
                             $param,
-                            $this->transalateOperatorsFields[$operator],
+                            $this->translateOperatorsFields[$operator],
                             $value
                         ];
                     }
