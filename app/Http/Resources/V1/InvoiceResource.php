@@ -27,10 +27,12 @@ class InvoiceResource extends JsonResource
                 'email' => $this->user->email,
             ],
             'type' => $this->types[$this->type],
-            'value' => Number::currency($this->value, "BRL"),
+            'value' => str_replace("R$", "R$ ", Number::currency($this->value, "BRL")),
             'paid' => $paid ? 'Pago' : 'Não Pago',
             'paymentDate' => $paid ? Carbon::parse($this->payment_date)->format('d/m/Y H:i:s') : NULL,
             'paymentSince' => $paid ? Carbon::parse($this->payment_date)->diffForHumans() : NULL,
         ];
     }
 }
+
+
