@@ -13,6 +13,11 @@ class InvoiceController extends Controller
 {
     use HttpResponses;
 
+    public function __construct()
+    {
+        $this->middleware(["auth:sanctum"])->only(["store", "update", "destroy"]);
+    }
+
 
     /**
      * @OA\Get(
