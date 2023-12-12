@@ -1,10 +1,60 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "title": "My First API",
+        "title": "Invoices API",
         "version": "0.1"
     },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "scheme": "bearer"
+            }
+        }
+    },
+    "security": {
+        "basicAuth": []
+    },
     "paths": {
+        "/api/v1/login": {
+            "post": {
+                "tags": [
+                    "login"
+                ],
+                "summary": "Returns a token if autheticated",
+                "produces": [
+                    "application/json"
+                ],
+                "description": "Returns a object of user",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "format": "int64",
+                                        "description": "Email do usuario",
+                                        "example": "teste@example.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "description": "Senha do usuário",
+                                        "example": "******"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "responses": {
+                        "200": {
+                            "description": "Logado"
+                        }
+                    }
+                }
+            }
+        },
         "/api/v1/invoices": {
             "get": {
                 "tags": [
@@ -23,44 +73,48 @@
                 "tags": [
                     "invoices"
                 ],
-                "produces": [
-                    "application/json"
-                ],
-                "consumes": [
-                    "application/x-www-form-urlencoded"
-                ],
+                "security": {
+                    "basicAuth": []
+                },
                 "summary": "Store invoice ",
                 "description": "Create invoice",
                 "operationId": "2a3d332a2b06bcf3aa6a68444f786beb",
-                "parameters": [
-                    {
-                        "name": "user_id",
-                        "in": "formData",
-                        "required": true
-                    },
-                    {
-                        "name": "type",
-                        "in": "formData",
-                        "type": "string",
-                        "required": true
-                    },
-                    {
-                        "name": "paid",
-                        "in": "formData",
-                        "type": "boolean",
-                        "required": true
-                    },
-                    {
-                        "name": "value",
-                        "in": "formData",
-                        "required": true
-                    },
-                    {
-                        "name": "payment_date",
-                        "in": "formData",
-                        "required": false
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "user_id": {
+                                        "type": "integer",
+                                        "format": "int64",
+                                        "description": "ID of the created user"
+                                    },
+                                    "type": {
+                                        "summary": "P de Pix, B de Boleto e C de Cartão",
+                                        "type": "string",
+                                        "format": "int64",
+                                        "enum": ["P", "C", "B"],
+                                        "description": "Type of payment: P de Pix, B de Boleto e C de Cartão",
+                                        "example": "P"
+                                    },
+                                    "paid": {
+                                        "type": "integer",
+                                        "format": "int64",
+                                        "minimum": 0,
+                                        "maximum": 1,
+                                        "description": "1 for paid and 0 for not paid"
+                                    },
+                                    "value": {
+                                        "type": "number",
+                                        "format": "int64",
+                                        "description": "Value of invoice"
+                                    }
+                                }
+                            }
+                        }
                     }
-                ],
+                },
                 "responses": {
                     "200": {
                         "description": "Create invoice"
