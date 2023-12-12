@@ -12,6 +12,16 @@ class AuthController extends Controller
 {
     use HttpResponses;
 
+
+    /**
+     * @OA\Post(
+     *     tags={"login"},
+     *     summary="Loga user and return a token",
+     *     description="Loga User",
+     *     path="/api/v1/login",
+     *     @OA\Response(response="200", description="Authorized"),
+     * ),
+    */
     public function login(Request $request)
     {
         if (Auth::attempt($request->only('email', 'password'))) {
