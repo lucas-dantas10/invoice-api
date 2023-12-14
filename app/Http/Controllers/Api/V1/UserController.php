@@ -10,12 +10,12 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
     /**
-     * @OA\Info(title="My First API", version="0.1")
      * @OA\Get(
      *     tags={"users"},
-     *     summary="Returns a list of users",
-     *     description="Returns a object of users",
+     *     summary="List of users",
+     *     description="Returns a list of users",
      *     path="/api/v1/users",
+     *     security={ {"bearerAuth": {} }},
      *     @OA\Response(response="200", description="A list with users"),
      * ),
     */
@@ -27,10 +27,11 @@ class UserController extends Controller
     /**
      * @OA\Get(
      *     tags={"users"},
-     *     summary="Returns a user especific",
-     *     description="Returns a object of users",
+     *     summary="Returns a user",
+     *     description="Returns a specific user",
      *     path="/api/v1/users/{user_id}",
-     *     @OA\Response(response="200", description="A user especific"),
+     *     security={ {"bearerAuth": {} }},
+     *     @OA\Response(response="200", description="A specific user"),
      *     @OA\Parameter(
      *         name="user_id",
      *         in= "path",
