@@ -11,8 +11,9 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::prefix("v1")->group(function () {
-    Route::post('/login', [AuthController::class, 'login'])->name('auth.login');
+    Route::post('login', [AuthController::class, 'login'])->name('auth.login');
     Route::apiResource('invoices', InvoiceController::class);
+    
     Route::middleware(['auth:sanctum'])->group(function () {
         Route::get("users", [UserController::class, "index"])->name("users");
         Route::get("users/{user}", [UserController::class, "show"])->name("users.show");
