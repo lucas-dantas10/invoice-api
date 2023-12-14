@@ -15,11 +15,30 @@ class AuthController extends Controller
 
     /**
      * @OA\Post(
-     *     tags={"login"},
-     *     summary="Loga user and return a token",
-     *     description="Loga User",
+     *     tags={"auth"},
+     *     summary="Sign in",
+     *     description="Login by email and password",
      *     path="/api/v1/login",
-     *     @OA\Response(response="200", description="Authorized"),
+     *     @OA\RequestBody(
+ *          description="Pass a user credential",
+ *          required=true,
+ *          @OA\JsonContent(
+ *              required={"email", "password"},
+ *              @OA\Property(property="email", type="string", example="mackenzie91@example.com"),
+ *              @OA\Property(property="password", type="string", format="password", example="password"),
+ *          )
+     *    ),
+     *     @OA\Response(
+     *      response="200", 
+     *      description="Authorized",
+     *     ),
+     *     @OA\Response(
+     *      response="403", 
+     *      description="Not Authorized",
+     *      @OA\JsonContent(
+     *          @OA\Property(property="user", type="object", ref="#/components/schemas/User"),
+     *      )
+     *     )
      * ),
     */
     public function login(Request $request)
@@ -33,6 +52,21 @@ class AuthController extends Controller
         return $this->error('Not Authorized', 403);
     }
 
+
+    /**
+     * @OA\Post(
+     * path="/api/v1/logout",
+     * security={ {"bearerAuth": {} }},
+     * summary="Logout",
+     * description="Logout of user",
+     * operationId="authLogout",
+     * tags={"auth"},
+     * @OA\Response(
+     *    response=200,
+     *    description="Token revoked"
+     *     ),
+     * )
+     */
     public function logout(Request $request)
     {
         $request->user()->currentAccessToken()->delete();
