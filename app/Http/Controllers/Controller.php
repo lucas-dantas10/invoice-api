@@ -7,7 +7,13 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 
 /**
- * @OA\Info(title="Invoices", version="0.1")
+ * @OA\SecurityScheme(
+ *      securityScheme="bearerAuth",
+ *      type="http",
+ *      scheme="bearer"
+ *    )
+ * @OA\Info(title="Invoice API", 
+ * version="1.0.0"),
  */
 class Controller extends BaseController
 {
