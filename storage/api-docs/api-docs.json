@@ -1,0 +1,338 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Invoice API",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/v1/invoices": {
+            "get": {
+                "tags": [
+                    "invoices"
+                ],
+                "summary": "List Of Invoices",
+                "description": "Returns a list of invoice",
+                "operationId": "bc7d90facaef99e1846d581b3a3b6efa",
+                "responses": {
+                    "200": {
+                        "description": "A list with invoices"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "invoices"
+                ],
+                "summary": "Store invoice ",
+                "description": "Create a invoice",
+                "operationId": "2a3d332a2b06bcf3aa6a68444f786beb",
+                "responses": {
+                    "200": {
+                        "description": "Invoice created"
+                    },
+                    "400": {
+                        "description": "Invoice not created"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/invoices/{invoice_id}": {
+            "get": {
+                "tags": [
+                    "invoices"
+                ],
+                "summary": "Returns a invoice",
+                "description": "Returns a specific invoice",
+                "operationId": "3a528f59d0070e9d0a3b019a0984c0e7",
+                "parameters": [
+                    {
+                        "name": "invoice_id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A invoice especific"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "invoices"
+                ],
+                "summary": "Update invoice",
+                "description": "Update a specific invoice",
+                "operationId": "d5a944f95dbec18b838863055fe8dc9e",
+                "parameters": [
+                    {
+                        "name": "invoice_id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "description": "Pass what will be updated on the invoice",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "user_id",
+                                    "type",
+                                    "paid",
+                                    "value"
+                                ],
+                                "properties": {
+                                    "user_id": {
+                                        "type": "integer",
+                                        "example": "1"
+                                    },
+                                    "type": {
+                                        "description": "P pix, C cartao, B boleto",
+                                        "type": "string",
+                                        "example": "P"
+                                    },
+                                    "paid": {
+                                        "type": "boolean",
+                                        "example": "0"
+                                    },
+                                    "value": {
+                                        "type": "number",
+                                        "example": "12000"
+                                    },
+                                    "payment_date": {
+                                        "description": "2023-12-11 00:00:00",
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": null
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Invoice updated"
+                    },
+                    "400": {
+                        "description": "Invoice not updated"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "invoices"
+                ],
+                "summary": "Delete invoice",
+                "description": "Delete a specific invoice",
+                "operationId": "96ffa4df99a9516cc164c8530a2529e7",
+                "parameters": [
+                    {
+                        "name": "invoice_id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Invoice deleted"
+                    },
+                    "400": {
+                        "description": "Invoice not deleted"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/users": {
+            "get": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "List of users",
+                "description": "Returns a list of users",
+                "operationId": "12e989554c281d650dff75443acabf54",
+                "responses": {
+                    "200": {
+                        "description": "A list with users"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/users/{user_id}": {
+            "get": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "Returns a user",
+                "description": "Returns a specific user",
+                "operationId": "5b0cb4a38a08204b7fab1d899510161c",
+                "parameters": [
+                    {
+                        "name": "user_id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A specific user"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/login": {
+            "post": {
+                "tags": [
+                    "auth"
+                ],
+                "summary": "Sign in",
+                "description": "Login by email and password",
+                "operationId": "da2ca4d7a5cdec77b8b45a20373535cb",
+                "requestBody": {
+                    "description": "Pass a user credential",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "email",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "example": "mackenzie91@example.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "format": "password",
+                                        "example": "password"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Authorized"
+                    },
+                    "403": {
+                        "description": "Not Authorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "user": {
+                                            "$ref": "#/components/schemas/User"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/logout": {
+            "post": {
+                "tags": [
+                    "auth"
+                ],
+                "summary": "Logout",
+                "description": "Logout of user",
+                "operationId": "authLogout",
+                "responses": {
+                    "200": {
+                        "description": "Token revoked"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "User": {
+                "required": [
+                    "password"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "readOnly": "true",
+                        "example": "1"
+                    },
+                    "first_name": {
+                        "type": "string",
+                        "maxLength": 32,
+                        "example": "John"
+                    },
+                    "last_name": {
+                        "type": "string",
+                        "maxLength": 32,
+                        "example": "Doe"
+                    },
+                    "email": {
+                        "description": "User unique email address",
+                        "type": "string",
+                        "format": "email",
+                        "readOnly": "true",
+                        "example": "user@gmail.com"
+                    },
+                    "email_verified_at": {
+                        "description": "Datetime marker of verification status",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": "true",
+                        "example": "2019-02-25 12:59:20"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "User"
+                }
+            }
+        },
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "scheme": "bearer"
+            }
+        }
+    }
+}
