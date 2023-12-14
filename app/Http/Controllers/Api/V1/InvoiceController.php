@@ -22,8 +22,8 @@ class InvoiceController extends Controller
     /**
      * @OA\Get(
      *     tags={"invoices"},
-     *     summary="Returns a list of invoices",
-     *     description="Returns a object of invoice",
+     *     summary="List Of Invoices",
+     *     description="Returns a list of invoice",
      *     path="/api/v1/invoices",
      *     @OA\Response(response="200", description="A list with invoices"),
      * ),
@@ -37,9 +37,11 @@ class InvoiceController extends Controller
      * @OA\Post(
      *     tags={"invoices"},
      *     summary="Store invoice ",
-     *     description="Create invoice",
+     *     security={ {"bearerAuth": {} }},
+     *     description="Create a invoice",
      *     path="/api/v1/invoices",
-     *     @OA\Response(response="200", description="Create invoice"),
+     *     @OA\Response(response="200", description="Invoice created"),
+     *     @OA\Response(response="400", description="Invoice not created"),
      * ),
     */
     public function store(Request $request)
@@ -68,8 +70,8 @@ class InvoiceController extends Controller
     /**
      * @OA\Get(
      *     tags={"invoices"},
-     *     summary="Returns a invoice especific",
-     *     description="Returns a object of invoice",
+     *     summary="Returns a invoice",
+     *     description="Returns a specific invoice",
      *     path="/api/v1/invoices/{invoice_id}",
      *     @OA\Response(response="200", description="A invoice especific"),
      *     @OA\Parameter(
@@ -84,6 +86,35 @@ class InvoiceController extends Controller
         return new InvoiceResource($invoice);
     }
 
+
+    /**
+     * @OA\Put(
+     *     tags={"invoices"},
+     *     summary="Update invoice",
+     *     security={ {"bearerAuth": {} }},
+     *     description="Update a specific invoice",
+     *     path="/api/v1/invoices/{invoice_id}",
+     *     @OA\Parameter(
+     *         name="invoice_id",
+     *         in= "path",
+     *         required=true,
+     *     ), 
+     *     @OA\RequestBody(
+ *          description="Pass what will be updated on the invoice",
+ *          required=true,
+ *          @OA\JsonContent(
+ *              required={"user_id", "type", "paid", "value"},
+ *              @OA\Property(property="user_id", type="integer", example="1"),
+ *              @OA\Property(property="type", type="string", example="P", description="P pix, C cartao, B boleto"),
+ *              @OA\Property(property="paid", type="boolean", example="0"),
+ *              @OA\Property(property="value", type="number", example="12000"),
+ *              @OA\Property(property="payment_date", type="string", format="date", example=null, description="2023-12-11 00:00:00"),
+ *          )
+     *    ),
+     *     @OA\Response(response="200", description="Invoice updated"),
+     *     @OA\Response(response="400", description="Invoice not updated"),
+     * ),
+    */
     public function update(Request $request, Invoice $invoice)
     {
         $validator = Validator::make($request->all(), [
@@ -115,6 +146,22 @@ class InvoiceController extends Controller
         return $this->error('Invoice not updated', 400);
     }
 
+    /**
+     * @OA\Delete(
+     *     tags={"invoices"},
+     *     summary="Delete invoice",
+     *     security={ {"bearerAuth": {} }},
+     *     description="Delete a specific invoice",
+     *     path="/api/v1/invoices/{invoice_id}",
+     *     @OA\Parameter(
+     *         name="invoice_id",
+     *         in= "path",
+     *         required=true,
+     *     ), 
+     *     @OA\Response(response="200", description="Invoice deleted"),
+     *     @OA\Response(response="400", description="Invoice not deleted"),
+     * ),
+    */
     public function destroy(Invoice $invoice)
     {
         $deleted = $invoice->delete();
