@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::prefix("v1")->group(function () {
-    Route::post('login', [AuthController::class, 'login'])->name('auth.login');
+    Route::post('/login', [AuthController::class, 'login'])->name('auth.login');
     Route::apiResource('invoices', InvoiceController::class);
     
     Route::middleware(['auth:sanctum'])->group(function () {
