@@ -234,8 +234,8 @@
    ```
 
 - **Response:**
-- Status: `200 OK`
-- Content:
+    - Status: `200 OK`
+    - Content:
     ```json
         {
             "message": "Invoice created",
@@ -258,14 +258,14 @@
         }
     ```
 - **Response Error:**
-- Status: `400 BAD REQUEST`
-- Content:
-    ```json
-        {
-            "message": "Invoice not created",
-            "status": 400,
-            "data": []
-        }
+    - Status: `400 BAD REQUEST`
+    - Content:
+        ```json
+            {
+                "message": "Invoice not created",
+                "status": 400,
+                "data": []
+            }
 
 ### Pegar uma fatura
 
@@ -277,25 +277,25 @@
     invoice_id => integer
    ```
 - **Response:**
-- Status: `200 OK`
-- Content:
-    ```json
-        {
-            "data": {
-                "user": {
-                    "firstName": "Delta",
-                    "lastName": "Heaney",
-                    "fullName": "Delta Heaney",
-                    "email": "mackenzie91@example.com"
-                },
-                "type": "Pix",
-                "value": "R$ 12,000.00",
-                "paid": "Não Pago",
-                "paymentDate": null,
-                "paymentSince": null
+    - Status: `200 OK`
+    - Content:
+        ```json
+            {
+                "data": {
+                    "user": {
+                        "firstName": "Delta",
+                        "lastName": "Heaney",
+                        "fullName": "Delta Heaney",
+                        "email": "mackenzie91@example.com"
+                    },
+                    "type": "Pix",
+                    "value": "R$ 12,000.00",
+                    "paid": "Não Pago",
+                    "paymentDate": null,
+                    "paymentSince": null
+                }
             }
-        }
-    ```
+        ```
 
 
 ### Atuaizar uma fatura
@@ -314,39 +314,39 @@
    ```
 
 - **Response:**
-- Status: `200 OK`
-- Content:
-    ```json
-        {
-            "message": "Invoice updated",
-            "status": 200,
-            "data": {
-                {
-                    "user": {
-                        "firstName": "Example",
-                        "lastName": "One",
-                        "fullName": "Example One",
-                        "email": "example.one@example.com"
-                    },
-                    "type": "Pix",
-                    "value": "R$ 12,000.00",
-                    "paid": "Não Pago",
-                    "paymentDate": null,
-                    "paymentSince": null
+    - Status: `200 OK`
+    - Content:
+        ```json
+            {
+                "message": "Invoice updated",
+                "status": 200,
+                "data": {
+                    {
+                        "user": {
+                            "firstName": "Example",
+                            "lastName": "One",
+                            "fullName": "Example One",
+                            "email": "example.one@example.com"
+                        },
+                        "type": "Pix",
+                        "value": "R$ 12,000.00",
+                        "paid": "Não Pago",
+                        "paymentDate": null,
+                        "paymentSince": null
+                    }
                 }
             }
-        }
-    ```
+        ```
 - **Response Error:**
-- Status: `400 BAD REQUEST`
-- Content:
-    ```json
-        {
-            "message": "Invoice not updated",
-            "status": 400,
-            "data": []
-        }
-    ```
+    - Status: `400 BAD REQUEST`
+    - Content:
+        ```json
+            {
+                "message": "Invoice not updated",
+                "status": 400,
+                "data": []
+            }
+        ```
 
 ### Deletar uma fatura
 
@@ -358,22 +358,22 @@
     invoice_id => integer
    ```
 - **Response:**
-- Status: `200 OK`
-- Content:
-    ```json
-        {
-            "message": "Invoice deleted",
-            "status": 200,
-            "data": []
-        }
-    ```
+    - Status: `200 OK`
+    - Content:
+        ```json
+            {
+                "message": "Invoice deleted",
+                "status": 200,
+                "data": []
+            }
+        ```
 - **Response Error:**
-- Status: `400 BAD REQUEST`
-- Content:
-    ```json
-        {
-            "message": "Invoice not deleted",
-            "status": 400,
-            "data": []
-        }
+    - Status: `400 BAD REQUEST`
+    - Content:
+        ```json
+            {
+                "message": "Invoice not deleted",
+                "status": 400,
+                "data": []
+            }
 
