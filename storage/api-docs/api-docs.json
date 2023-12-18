@@ -10,7 +10,7 @@
                 "tags": [
                     "invoices"
                 ],
-                "summary": "List Of Invoices",
+                "summary": "List of Invoices",
                 "description": "Returns a list of invoice",
                 "operationId": "bc7d90facaef99e1846d581b3a3b6efa",
                 "responses": {
@@ -28,10 +28,20 @@
                 "operationId": "2a3d332a2b06bcf3aa6a68444f786beb",
                 "responses": {
                     "200": {
-                        "description": "Invoice created"
+                        "description": "Invoice created",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
                     },
                     "400": {
-                        "description": "Invoice not created"
+                        "description": "Invoice not created",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
                     }
                 },
                 "security": [
@@ -120,10 +130,20 @@
                 },
                 "responses": {
                     "200": {
-                        "description": "Invoice updated"
+                        "description": "Invoice updated",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
                     },
                     "400": {
-                        "description": "Invoice not updated"
+                        "description": "Invoice not updated",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
                     }
                 },
                 "security": [
@@ -148,10 +168,20 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Invoice deleted"
+                        "description": "Invoice deleted",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
                     },
                     "400": {
-                        "description": "Invoice not deleted"
+                        "description": "Invoice not deleted",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
                     }
                 },
                 "security": [
@@ -171,7 +201,12 @@
                 "operationId": "12e989554c281d650dff75443acabf54",
                 "responses": {
                     "200": {
-                        "description": "A list with users"
+                        "description": "A list with users",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
                     }
                 },
                 "security": [
@@ -198,7 +233,12 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "A specific user"
+                        "description": "A specific user",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
                     }
                 },
                 "security": [
@@ -274,7 +314,12 @@
                 "operationId": "authLogout",
                 "responses": {
                     "200": {
-                        "description": "Token revoked"
+                        "description": "Token revoked",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
                     }
                 },
                 "security": [
