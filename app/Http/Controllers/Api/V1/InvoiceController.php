@@ -22,7 +22,7 @@ class InvoiceController extends Controller
     /**
      * @OA\Get(
      *     tags={"invoices"},
-     *     summary="List Of Invoices",
+     *     summary="List of Invoices",
      *     description="Returns a list of invoice",
      *     path="/api/v1/invoices",
      *     @OA\Response(response="200", description="A list with invoices"),
@@ -40,8 +40,8 @@ class InvoiceController extends Controller
      *     security={ {"bearerAuth": {} }},
      *     description="Create a invoice",
      *     path="/api/v1/invoices",
-     *     @OA\Response(response="200", description="Invoice created"),
-     *     @OA\Response(response="400", description="Invoice not created"),
+     *     @OA\Response(response="200", description="Invoice created", @OA\JsonContent()),
+     *     @OA\Response(response="400", description="Invoice not created", @OA\JsonContent()),
      * ),
     */
     public function store(Request $request)
@@ -111,8 +111,8 @@ class InvoiceController extends Controller
  *              @OA\Property(property="payment_date", type="string", format="date", example=null, description="2023-12-11 00:00:00"),
  *          )
      *    ),
-     *     @OA\Response(response="200", description="Invoice updated"),
-     *     @OA\Response(response="400", description="Invoice not updated"),
+     *     @OA\Response(response="200", description="Invoice updated", @OA\JsonContent()),
+     *     @OA\Response(response="400", description="Invoice not updated", @OA\JsonContent()),
      * ),
     */
     public function update(Request $request, Invoice $invoice)
@@ -158,8 +158,8 @@ class InvoiceController extends Controller
      *         in= "path",
      *         required=true,
      *     ), 
-     *     @OA\Response(response="200", description="Invoice deleted"),
-     *     @OA\Response(response="400", description="Invoice not deleted"),
+     *     @OA\Response(response="200", description="Invoice deleted", @OA\JsonContent()),
+     *     @OA\Response(response="400", description="Invoice not deleted", @OA\JsonContent()),
      * ),
     */
     public function destroy(Invoice $invoice)

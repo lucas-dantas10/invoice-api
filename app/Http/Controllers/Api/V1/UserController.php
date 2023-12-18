@@ -16,7 +16,7 @@ class UserController extends Controller
      *     description="Returns a list of users",
      *     path="/api/v1/users",
      *     security={ {"bearerAuth": {} }},
-     *     @OA\Response(response="200", description="A list with users"),
+     *     @OA\Response(response="200", description="A list with users", @OA\JsonContent()),
      * ),
     */
     public function index()
@@ -31,7 +31,7 @@ class UserController extends Controller
      *     description="Returns a specific user",
      *     path="/api/v1/users/{user_id}",
      *     security={ {"bearerAuth": {} }},
-     *     @OA\Response(response="200", description="A specific user"),
+     *     @OA\Response(response="200", description="A specific user", @OA\JsonContent()),
      *     @OA\Parameter(
      *         name="user_id",
      *         in= "path",
