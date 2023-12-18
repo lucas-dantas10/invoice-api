@@ -63,7 +63,8 @@ class AuthController extends Controller
      * tags={"auth"},
      * @OA\Response(
      *    response=200,
-     *    description="Token revoked"
+     *    description="Token revoked",
+     *    @OA\JsonContent()
      *     ),
      * )
      */
