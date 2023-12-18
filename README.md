@@ -1,6 +1,14 @@
-# Documentação da Invoice API
+# 📝 Documentação da Invoice API
 
-## Descrição: Uma API RESTful para gerenciamento de faturas e consulta de usuários.
+## 🔥 Introdução
+### Uma API RESTful para gerenciamento de faturas e consulta de usuários.
+
+## 📦 Tecnologias usadas:
+
+* ![Laravel](https://img.shields.io/badge/laravel-%23FF2D20.svg?style=for-the-badge&logo=laravel&logoColor=white)
+* ![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)
+* ![Swagger](https://img.shields.io/badge/-Swagger-%23Clojure?style=for-the-badge&logo=swagger&logoColor=white)
+
 
 ## Authentication Endpoints
 
@@ -377,3 +385,8 @@
                 "data": []
             }
 
+## 💡 Expressões de gratidão
+
+* Um agradecimento publicamente.
+* Para suporte, mande um email para lucas.dantas.nogueira@gmail.com.
+* [Meu linkedin](https://www.linkedin.com/in/lucas-dantas10/)
