@@ -10,6 +10,7 @@
 * ![Swagger](https://img.shields.io/badge/-Swagger-%23Clojure?style=for-the-badge&logo=swagger&logoColor=white)
 
 
+## Base url: `https://api-invoice.online`
 ## Authentication Endpoints
 
 ### Efetuar login
