@@ -269,7 +269,7 @@
                                 "properties": {
                                     "email": {
                                         "type": "string",
-                                        "example": "mackenzie91@example.com"
+                                        "example": "bernard.aufderhar@example.com"
                                     },
                                     "password": {
                                         "type": "string",
